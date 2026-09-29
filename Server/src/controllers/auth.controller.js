@@ -241,11 +241,14 @@ const deleteUser = async (req, res) => {
 
 
 
+const getUserById = async (req, res) => { };
+
 export default {
     registerUser,
     loginUser,
     getUserMe,
     logoutUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserById
 };

@@ -26,6 +26,9 @@ router.get(
     authController.getUserMe
 );
 
+
+router.get('/me/:id', authenticationMiddleware, authController.getUserById)
+
 router.put(
     "/update",
     authenticationMiddleware,
@@ -37,5 +40,8 @@ router.delete(
     authenticationMiddleware,
     authController.deleteUser
 );
+
+
+
 
 export default router;
