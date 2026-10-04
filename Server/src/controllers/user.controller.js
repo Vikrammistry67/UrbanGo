@@ -241,7 +241,8 @@ const deleteUser = async (req, res) => {
 
 
 
-const getUserById = async (req, res) => { };
+
+
 
 export default {
     registerUser,
@@ -250,5 +251,4 @@ export default {
     logoutUser,
     updateUser,
     deleteUser,
-    getUserById
 };

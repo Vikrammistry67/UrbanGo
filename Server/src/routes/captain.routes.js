@@ -1,39 +1,29 @@
 import express from "express";
 
-import {
-    registerCaptain,
-    loginCaptain,
-    logoutCaptain,
-    getCaptainProfile,
-    updateCaptain,
-    updateCaptainLocation,
-    updateCaptainStatus,
-    updateCaptainVehicle,
-} from "../controllers/captain.controller.js";
+import captainController from "../controllers/captain.controller.js";
 
 import authenticationMiddleware from "../middlewares/authentication.middleware.js";
+import authorizeMiddleware from "../middlewares/authorization.middleware.js";
 
 const router = express.Router();
 
 // Public
-router.post("/register", registerCaptain);
-router.post("/login", loginCaptain);
+router.post("/register", captainController.registerCaptain);
+router.post("/login", captainController.loginCaptain);
 
 // Protected
-router.use(authenticationMiddleware);
+router.post(
+    "/logout",
+    authenticationMiddleware,
+    authorizeMiddleware("captain"),
+    captainController.logoutCaptain
+);
 
-router.post("/logout", logoutCaptain);
-
-router.get("/profile", getCaptainProfile);
-
-router.patch("/profile", updateCaptain);
-
-// router.delete("/profile", deleteCaptain);-
-
-router.patch("/location", updateCaptainLocation);
-
-router.patch("/status", updateCaptainStatus);
-
-router.patch("/vehicle", updateCaptainVehicle);
+router.get(
+    "/me",
+    authenticationMiddleware,
+    authorizeMiddleware("captain"),
+    captainController.getCaptainProfile
+);
 
 export default router;

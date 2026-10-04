@@ -4,6 +4,8 @@ import authController from '../controllers/user.controller.js';
 import authenticationMiddleware from '../middlewares/authentication.middleware.js';
 import { registerUserValidation } from '../validations/auth.validator.js';
 
+
+
 router.post(
     '/register',
     registerUserValidation,
@@ -29,7 +31,6 @@ router.get(
 );
 
 
-router.get('/me/:id', authenticationMiddleware, authController.getUserById)
 
 router.put(
     "/update",

@@ -51,8 +51,8 @@ app.get("/health", (req, res) => {
 });
 
 // Routes
-app.use("/api/v1/auth/user", userRoutes);
-app.use("/api/v1/auth/captain", captainRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/captains", captainRoutes);
 
 // 404
 app.use((req, res) => {
